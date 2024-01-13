@@ -9,7 +9,7 @@ function ChatCard({image,userName,lastMessage,timeStamp, messageCount}){
                 </div>
                 <div className="ml-3 text-white">
                     <div>
-                       <p className="text-xl font-medium">{userName}</p> 
+                       <p className="text-xl">{userName}</p> 
                     </div>
                     <div className="flex items-center space-x-1">
                         <IoCheckmarkOutline className="text-gray-200"/>
@@ -17,7 +17,7 @@ function ChatCard({image,userName,lastMessage,timeStamp, messageCount}){
                     </div>
                 </div> 
             </div>
-            <div className="space-y-1 flex flex-col items-end">
+            <div className="space-y-2 flex flex-col items-end">
                 <div>
                     <p className="text-white text-xs">{timeStamp} pm</p>
                 </div>

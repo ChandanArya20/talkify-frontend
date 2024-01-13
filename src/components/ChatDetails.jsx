@@ -16,7 +16,7 @@ function ChatDetails(){
     }
 
     return(
-        <div className="w-full h-screen flex flex-col justify-between">
+        <div className="w-full  h-screen flex flex-col justify-between">
         {/* Header */}
         <div className="bg-[#222e35da]">
             <div className="w-[95%] h-14 flex items-center justify-between mx-auto">
@@ -46,7 +46,7 @@ function ChatDetails(){
         {/* Middle content */}
         <div className="flex-1 bg-[#111B21] overflow-y-scroll">
             <div className=" flex flex-col space-y-1 p-10 ">
-                {[1,1,1,1,1,1,1,1,1,1,1,1,1].map((item, i)=><MessageCard isReqUserMsg={i%4==0} textMessage={'message'}/>)}
+                {[1,1,1,1,1,1,1,1,1,1,1,1,1].map((item, i)=><MessageCard isReqUserMsg={i%3==0} textMessage={'message'}/>)}
             </div>
         </div>
 
@@ -76,7 +76,7 @@ function ChatDetails(){
                 </div>
                 {/* Send button or microphone based on text input */}
                 <div className="p-4">
-                    {textMessage ? <IoSend className="cursor-pointer text-[#8696A0] text-2xl" /> :
+                    {textMessage ? <IoSend className="cursor-pointer text-[#8696A0] text-2xl" onClick={handleSendMessage}/> :
                         <HiMicrophone className="cursor-pointer text-[#8696A0] text-2xl" />
                     }
                 </div>
