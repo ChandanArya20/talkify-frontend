@@ -12,6 +12,7 @@ import ChatDetails from "../components/ChatDetails";
 import Profile from "../components/profile";
 import { useNavigate } from "react-router-dom";
 import Status from "../components/Status";
+import { Menu, MenuItem } from "@mui/material";
 
 function HomePage() {
     const [query, setQuery] = useState("");
@@ -20,6 +21,16 @@ function HomePage() {
     const [currentChat, setCurrentChat]= useState(false);
     const [isProfile, setIsProfile]= useState(false);
     const [isStatus, setIsStatus]= useState(false);
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const navigate=useNavigate();
 
@@ -77,7 +88,25 @@ function HomePage() {
                                 <PiCircleDashedBold className="cursor-pointer" onClick={()=>setIsStatus(true)}/>
                                 <RiWechat2Line className="cursor-pointer"/>
                                 <MdOutlineChat className="cursor-pointer" />
-                                <BiDotsVerticalRounded className="cursor-pointer" />
+                                <div>
+                                    <BiDotsVerticalRounded className="cursor-pointer" onClick={handleClick}/>
+                                    <Menu
+                                        id="basic-menu"
+                                        anchorEl={anchorEl}
+                                        open={open}
+                                        onClose={handleClose}
+                                        MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                        }}
+                                    >
+                                        <MenuItem onClick={handleClose}>New group</MenuItem>
+                                        <MenuItem onClick={handleClose}>New community</MenuItem>
+                                        <MenuItem onClick={handleClose}>Starred messages</MenuItem>
+                                        <MenuItem onClick={handleClose}>Select Chats</MenuItem>
+                                        <MenuItem onClick={handleClose}>Settings</MenuItem>
+                                        <MenuItem onClick={handleClose}>Log out</MenuItem>
+                                    </Menu>
+                                </div>
                             </div>
                         </div>
                         </div>
@@ -127,7 +156,7 @@ function HomePage() {
                         {/* Image */}
                         <div className="w-[280px]">
                             <img
-                                className="rounded-md brightness-75"
+                                className="rounded-md brightness-90"
                                 src="https://img.freepik.com/free-vector/business-people-arranging-appointment-digital-booking-app_74855-20006.jpg?w=826&t=st=1705066079~exp=1705066679~hmac=3cc2a5cbd4c09aaaeb62ba791709f1f7c2798a4718a6528cf30a6a6b74173ff3"
                                 alt=""
                             />
