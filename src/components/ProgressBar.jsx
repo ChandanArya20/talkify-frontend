@@ -25,7 +25,7 @@ const ProgressBar = ({ activeIndex, index, duration }) => {
         // Cleanup function to clear the interval on component unmount or when activeIndex changes
         return () => clearInterval(intervalId);
 
-    }, [duration, activeIndex, index]); 
+    }, [duration, activeIndex]); 
     
     // Effect to reset progress when activeIndex changes
     useEffect(() => {

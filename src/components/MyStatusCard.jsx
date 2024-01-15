@@ -1,6 +1,6 @@
 import { IoCheckmarkOutline } from "react-icons/io5";
 
-function MyStatusCard({statusImages,stausTimeStamp}){
+function MyStatusCard({statusImages,statusTimeStamp}){
     return(
         <div className="w-[98%] p-3 flex justify-between ]">
             <div className="flex items-center space-x-4">
@@ -12,7 +12,7 @@ function MyStatusCard({statusImages,stausTimeStamp}){
                        <p className="text-base font-medium text-gray-300">My Staus</p> 
                     </div>
                     <div className="flex items-center space-x-1">
-                        <p className="text-sm text-gray-400">{stausTimeStamp}</p>
+                        <p className="text-sm text-gray-400">{statusTimeStamp}</p>
                     </div> 
                 </div> 
             </div>

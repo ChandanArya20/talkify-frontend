@@ -39,7 +39,7 @@ const Profile = ({closeOpenProfile}) => {
 
             {/* image section */}
             <div className='h-60 flex items-center justify-center'>  
-                <div className='w-[15vw] h-[15vw] rounded-full bg-white cursor-pointer'>
+                <div className='w-44 h-44 md:w-48 md:h-48 rounded-full bg-white cursor-pointer'>
                     <label htmlFor="imageInput">
                         <img className=' w-full h-full rounded-full object-cover cursor-pointer' src="https://cdn.pixabay.com/photo/2018/07/31/22/08/lion-3576045_1280.jpg" alt="" />
                     </label>
@@ -48,7 +48,7 @@ const Profile = ({closeOpenProfile}) => {
             </div>
 
             {/* name section  */}
-            <div className='h-30 flex flex-col space-y-2 px-8'>
+            <div className='h-30 flex flex-col space-y-2 px-5 md:px-8'>
                 <div>
                     <p className='text-sm font-medium text-[#005C4B]'>Your name</p>
                 </div>
@@ -75,7 +75,7 @@ const Profile = ({closeOpenProfile}) => {
             </div>
 
             {/* about section  */}
-            <div className='h-30 flex flex-col space-y-2 px-8 pb-5'>
+            <div className='h-30 flex flex-col space-y-2 px-5 md:px-8 pb-5'>
                 <div>
                     <p className='text-sm font-medium text-[#005C4B]'>About</p>
                 </div>

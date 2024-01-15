@@ -46,7 +46,13 @@ function HomePage() {
     };
 
     const handleCurrentChatClick=()=>{
-        setCurrentChat(true);
+        if (window.innerWidth < 640) {
+            // for small devices
+            navigate('/chat-details'); 
+        } else {
+            // for medium or larger devices
+            setCurrentChat(true);
+        }
     }
 
     const handleProfileClick=()=>{
@@ -112,7 +118,7 @@ function HomePage() {
                         </div>
                         {/* Search Bar */}
                         <div className="ml-3 mt-2 flex items-center">
-                            <div className="w-[92%] h-9 rounded-lg flex justify-items-start items-center space-x-8 bg-[#202C33]">
+                            <div className="w-[87%] md:w-[92%] h-9 rounded-lg flex justify-items-start items-center space-x-8 bg-[#202C33]">
                                 <IoIosSearch className="text-gray-400 ml-4 text-xl cursor-pointer" />
                                 <input
                                     type="text"
@@ -125,12 +131,12 @@ function HomePage() {
                                 />
                             </div>
                             <div 
-                                className={`m-auto w-6 h-6 rounded-full flex items-center justify-center ${
+                                className={`m-auto w-8 h-8 md:w-6 md:h-6 rounded-full flex items-center justify-center ${
                                     isFilterClicked ? 'bg-[#00A884]' : ''
                                 }`}
                                 onClick={handleFilterClick}
                             >
-                            <IoFilter className={` text-base cursor-pointer ${isFilterClicked?'text-white':'text-gray-400'}`}/>
+                            <IoFilter className={`text-xl md:text-base cursor-pointer ${isFilterClicked?'text-white':'text-gray-400'}`}/>
                             </div>  
                         </div>
                         {/* Chat Cards */}

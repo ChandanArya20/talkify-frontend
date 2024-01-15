@@ -4,16 +4,27 @@ import { IoMdArrowBack } from 'react-icons/io'
 import MyStatusCard from './MyStatusCard'
 import { BsLockFill } from "react-icons/bs";
 import statusData from '../assets/statusData';
+import StatusViewer from './StatusViewer';
 
 const Status = ({closeOpenStatus}) => {
 
     const [status, setStatus] = useState(statusData);
-    console.log(status);
-    console.log(statusData);
+    const [isViewerOpen, setIsViewerOpen] = useState(false); 
+    const [selectedStatus, setSelectedStatus] = useState(null); 
+
+    const openStatusViewer = (status) => {
+        setSelectedStatus(status);
+        setIsViewerOpen(true);
+    };
+    
+    const closeStatusViewer = () => {
+        console.log("close status viewer");
+        setIsViewerOpen(false);
+    };
 
     const item={
         statusImages:"https://cdn.pixabay.com/photo/2023/10/05/16/23/bird-8296358_1280.jpg",
-        stausTimeStamp:"no updates"
+        statusTimeStamp:"no updates"
     }
 
   return (
@@ -42,7 +53,7 @@ const Status = ({closeOpenStatus}) => {
             <div className='flex flex-col space-y-2 '>
                 {
                     statusData.map((item)=>
-                        <div key={item.id}>
+                        <div key={item.id} onClick={() => openStatusViewer(item)}>
                             <StatusCard {...item}/>
                         </div>
                     )
@@ -58,6 +69,13 @@ const Status = ({closeOpenStatus}) => {
                 </div>
             </div>
         </div>
+        {/* StatusViewer modal */}
+        {isViewerOpen && (
+        <StatusViewer
+          status={selectedStatus}
+          closeStatusViewer={closeStatusViewer}
+        />
+      )}
     </div>
   )
 }
