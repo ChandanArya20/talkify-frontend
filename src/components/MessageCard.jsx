@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const MessageCard = ({ isReqUserMsg, textMessage }) => {
-    console.log(textMessage);
+    
     return (
         <div
             className={`flex flex-col items-${isReqUserMsg ? 'end' : 'start'} mx-2 my-1 max-w-[50%] rounded-md ${

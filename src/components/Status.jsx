@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StatusCard from './StatusCard'
 import { IoMdArrowBack } from 'react-icons/io'
 import MyStatusCard from './MyStatusCard'
@@ -73,6 +73,7 @@ const Status = ({closeOpenStatus}) => {
         {/* StatusViewer modal */}
         {isViewerOpen && (
         <StatusViewer
+          userName={selectedStatus.userName}
           status={selectedStatus}
           closeStatusViewer={closeStatusViewer}
         />

@@ -17,12 +17,16 @@ import applogo from '../assets/applogo.png'
 import loginuser from '../assets/loginuser.jpg';
 
 function HomePage() {
+
     const [query, setQuery] = useState("");
     const [chats, setChats] = useState(chatsData);
     const [isFilterClicked, setIsFilterClicked] = useState(false);
     const [currentChat, setCurrentChat]= useState(false);
+    const [selectedChat, setSelectedChat]=useState(null);
     const [isProfile, setIsProfile]= useState(false);
     const [isStatus, setIsStatus]= useState(false);
+
+    console.log(selectedChat);
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -47,7 +51,9 @@ function HomePage() {
         setIsFilterClicked(!isFilterClicked);
     };
 
-    const handleCurrentChatClick=()=>{
+    const handleCurrentChatClick=(chat)=>{
+       
+        setSelectedChat(chat);
         if (window.innerWidth < 640) {
             // for small devices
             navigate('/chat-details'); 
@@ -144,7 +150,7 @@ function HomePage() {
                         {/* Chat Cards */}
                         <div className="w-full h-[83vh] ml-3 mt-2 overflow-y-scroll pb-5">
                             {chats.map((item) => (
-                                <div key={item.id} onClick={handleCurrentChatClick}>
+                                <div key={item.id} onClick={()=>handleCurrentChatClick(item)}>
                                     <ChatCard  {...item} />
                                 </div>
                             ))}
@@ -158,7 +164,7 @@ function HomePage() {
             <div className="hidden md:flex md:w-[60%] border-l-2 border-gray-700">
                 {
                     currentChat ? (
-                        <ChatDetails/>
+                        <ChatDetails userName={selectedChat.userName}/>
                     ):      
                     <div className="w-full h-screen flex flex-col items-center justify-center">
                         {/* Image */}

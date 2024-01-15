@@ -12,7 +12,7 @@ import ProgressBar from "./ProgressBar";
 import StatusCard from "./StatusCard";
 import { useNavigate } from "react-router-dom";
 
-const StatusViewer = ({status, closeStatusViewer}) => {
+const StatusViewer = ({userName, status, closeStatusViewer}) => {
   const [currentStoriesIndex, setCurrentStoriesIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [replyMessage, setReplyMessage] = useState("");
@@ -54,7 +54,7 @@ const StatusViewer = ({status, closeStatusViewer}) => {
   };
 
   const item = {
-    userName: "User name",
+    userName: userName,
     statusImages:
       "https://cdn.pixabay.com/photo/2016/03/27/21/52/woman-1284411_1280.jpg",
     statusTimeStamp: "8h ago",

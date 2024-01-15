@@ -8,7 +8,9 @@ import { IoSend } from "react-icons/io5";
 import MessageCard from "./MessageCard";
 import { useNavigate } from "react-router-dom";
 
-function ChatDetails(){
+function ChatDetails({userName}){
+
+    console.log(userName);
 
     const [textMessage, setTextMessage]=useState('');
     const navigate=useNavigate();
@@ -40,7 +42,7 @@ function ChatDetails(){
                     </div>
                     {/* User details */}
                     <div className="">                  
-                        <p className="text-white font-medium text-lg">UserName</p>
+                        <p className="text-white font-medium text-lg">{userName}</p>
                         <p className="text-gray-400 text-sm">last seen</p>
                     </div>
                 </div>
@@ -55,7 +57,7 @@ function ChatDetails(){
         {/* Middle content */}
         <div className="flex-1 bg-[#111B21] overflow-y-scroll">
             <div className="flex flex-col space-y-1 p-3 md:p-10 ">
-                {[1,1,1,1,1,1,1,1,1,1,1,1,1].map((item, i)=><MessageCard isReqUserMsg={i%3==0} textMessage={'message'}/>)}
+                {[1,1,1,1,1,1,1,1,1,1,1,1,1].map((item, i)=><MessageCard key={i} isReqUserMsg={i%3==0} textMessage={'message'}/>)}
             </div>
         </div>
 
