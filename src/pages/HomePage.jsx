@@ -13,6 +13,7 @@ import Profile from "../components/profile";
 import { useNavigate } from "react-router-dom";
 import Status from "../components/Status";
 import { Menu, MenuItem } from "@mui/material";
+import applogo from '../assets/applogo.png'
 
 function HomePage() {
     const [query, setQuery] = useState("");
@@ -166,6 +167,11 @@ function HomePage() {
                                 src="https://img.freepik.com/free-vector/business-people-arranging-appointment-digital-booking-app_74855-20006.jpg?w=826&t=st=1705066079~exp=1705066679~hmac=3cc2a5cbd4c09aaaeb62ba791709f1f7c2798a4718a6528cf30a6a6b74173ff3"
                                 alt=""
                             />
+                            <div className="flex justify-center relative bottom-7">
+                                <img src={applogo}
+                                className="w-16"
+                                alt="" />
+                            </div>
                         </div>
                         {/* Text Content */}
                         <div className="text-white text-center space-y-5">
