@@ -4,6 +4,7 @@ import { FaPen } from "react-icons/fa";
 import { IoCheckmarkOutline } from 'react-icons/io5';
 import { FaRegFaceSmile } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
+import loginuser from '../assets/loginuser.jpg';
 
 const Profile = ({closeOpenProfile}) => {
 
@@ -41,7 +42,7 @@ const Profile = ({closeOpenProfile}) => {
             <div className='h-60 flex items-center justify-center'>  
                 <div className='w-44 h-44 md:w-48 md:h-48 rounded-full bg-white cursor-pointer'>
                     <label htmlFor="imageInput">
-                        <img className=' w-full h-full rounded-full object-cover cursor-pointer' src="https://cdn.pixabay.com/photo/2018/07/31/22/08/lion-3576045_1280.jpg" alt="" />
+                        <img className=' w-full h-full rounded-full object-cover cursor-pointer' src={loginuser} alt="" />
                     </label>
                     <input type="file" id='imageInput' accept="image/*" className=' w-full h-full rounded-full object-cover hidden' />
                 </div>

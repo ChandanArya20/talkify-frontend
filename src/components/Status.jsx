@@ -5,6 +5,7 @@ import MyStatusCard from './MyStatusCard'
 import { BsLockFill } from "react-icons/bs";
 import statusData from '../assets/statusData';
 import StatusViewer from './StatusViewer';
+import loginuser from '../assets/loginuser.jpg';
 
 const Status = ({closeOpenStatus}) => {
 
@@ -23,7 +24,7 @@ const Status = ({closeOpenStatus}) => {
     };
 
     const item={
-        statusImages:"https://cdn.pixabay.com/photo/2023/10/05/16/23/bird-8296358_1280.jpg",
+        statusImages:loginuser,
         statusTimeStamp:"no updates"
     }
 

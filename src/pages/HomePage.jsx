@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import Status from "../components/Status";
 import { Menu, MenuItem } from "@mui/material";
 import applogo from '../assets/applogo.png'
+import loginuser from '../assets/loginuser.jpg';
 
 function HomePage() {
     const [query, setQuery] = useState("");
@@ -86,7 +87,7 @@ function HomePage() {
                             <div className="w-10 h-10 rounded-full bg-white cursor-pointer" onClick={handleProfileClick}>
                                 <img
                                     className=" w-full h-full rounded-full object-cover"
-                                    src="https://cdn.pixabay.com/photo/2016/10/17/19/40/indians-1748464_1280.jpg"
+                                    src={loginuser}
                                     alt=""
                                 />
                             </div>
@@ -159,18 +160,19 @@ function HomePage() {
                     currentChat ? (
                         <ChatDetails/>
                     ):      
-                    <div className="w-full h-screen flex flex-col items-center justify-center space-y-5">
+                    <div className="w-full h-screen flex flex-col items-center justify-center">
                         {/* Image */}
-                        <div className="w-[280px]">
+                        <div className="w-[270px]">
                             <img
                                 className="rounded-md brightness-90"
                                 src="https://img.freepik.com/free-vector/business-people-arranging-appointment-digital-booking-app_74855-20006.jpg?w=826&t=st=1705066079~exp=1705066679~hmac=3cc2a5cbd4c09aaaeb62ba791709f1f7c2798a4718a6528cf30a6a6b74173ff3"
                                 alt=""
                             />
-                            <div className="flex justify-center relative bottom-7">
+                            <div className="flex flex-col items-center relative bottom-7">
                                 <img src={applogo}
                                 className="w-16"
                                 alt="" />
+                                <h1 className="text-[#864AF9] text-2xl font-bold">Talkify</h1>
                             </div>
                         </div>
                         {/* Text Content */}
