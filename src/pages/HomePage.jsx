@@ -183,10 +183,10 @@ function HomePage() {
                         </div>
                         {/* Text Content */}
                         <div className="text-white text-center space-y-5">
-                            <h1 className="text-3xl font-semibold text-gray-200" >
-                            Connect with your loved ones effortlessly
+                            <h1 className="text-4xl text-gray-200" >
+                            Connect With Your Loved Ones
                             </h1>
-                            <p className="text-sm text-gray-300">
+                            <p className="text-sm text-gray-400">
                             Connect with your loved ones effortlessly. Stay in touch, <br />
                             share moments, and create lasting memories. Whether near or far, <br />
                             bring your conversations.
