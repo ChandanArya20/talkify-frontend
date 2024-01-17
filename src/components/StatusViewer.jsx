@@ -13,12 +13,17 @@ import StatusCard from "./StatusCard";
 import { useNavigate } from "react-router-dom";
 
 const StatusViewer = ({ userName, status, closeStatusViewer }) => {
+
     const [currentStoriesIndex, setCurrentStoriesIndex] = useState(0);
+    // State to manage the active index for progress bar
     const [activeIndex, setActiveIndex] = useState(0);
     const [replyMessage, setReplyMessage] = useState("");
     const navigate = useNavigate();
+
+    // Check if the device is small (mobile)
     const isSmallDevice = window.innerWidth < 640;
 
+    // Function to handle advancing to the next story
     const handleNextStory = () => {
         if (currentStoriesIndex < stories.length - 1) {
             setCurrentStoriesIndex(currentStoriesIndex + 1);
@@ -29,6 +34,7 @@ const StatusViewer = ({ userName, status, closeStatusViewer }) => {
         }
     };
 
+    // Function to handle going back to the previous story
     const handleBackStory = () => {
         if (currentStoriesIndex > 0) {
             setCurrentStoriesIndex(currentStoriesIndex - 1);
@@ -39,8 +45,8 @@ const StatusViewer = ({ userName, status, closeStatusViewer }) => {
         }
     };
 
+    // Auto-advance to the next story every 3 seconds
     useEffect(() => {
-        // Auto-advance to the next story every 3 seconds
         const intervalId = setInterval(() => {
             handleNextStory();
         }, 3000);
@@ -49,10 +55,12 @@ const StatusViewer = ({ userName, status, closeStatusViewer }) => {
         return () => clearInterval(intervalId);
     }, [currentStoriesIndex]);
 
+    // Function to handle sending a reply message
     const handleReplyMessage = () => {
         // Handle sending the reply message
     };
 
+    // Sample item for StatusCard
     const item = {
         userName: userName,
         statusImages:
@@ -77,6 +85,7 @@ const StatusViewer = ({ userName, status, closeStatusViewer }) => {
                             isSmallDevice ? "bg-[#3741513c]" : "bg-gray-700"
                         } flex items-center justify-center`}
                     >
+                        {/* Back arrow for stories */}
                         <MdOutlineArrowBackIos
                             className="cursor-pointer"
                             onClick={handleBackStory}
@@ -88,11 +97,13 @@ const StatusViewer = ({ userName, status, closeStatusViewer }) => {
             {/* Story content */}
             <div className="flex flex-1 justify-center mt-20 md:mt-5">
                 <div className="relative h-[75vh] md:h-[84vh]">
+                    {/* Story image */}
                     <img
                         className="max-h-[75vh] md:max-h-[84vh] object-contain bg-white"
                         src={stories?.[currentStoriesIndex].image}
                         alt=""
                     />
+                    {/* Progress bar */}
                     <div className="absolute top-0 w-full flex space-x-2 mt-2">
                         {stories.map((item, index) => (
                             <ProgressBar
@@ -122,6 +133,7 @@ const StatusViewer = ({ userName, status, closeStatusViewer }) => {
                             isSmallDevice ? "bg-[#3741513c]" : "bg-gray-700"
                         } flex items-center justify-center`}
                     >
+                        {/* Forward arrow for stories */}
                         <MdOutlineArrowForwardIos
                             className="cursor-pointer"
                             onClick={handleNextStory}

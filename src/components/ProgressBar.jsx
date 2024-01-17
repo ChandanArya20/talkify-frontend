@@ -3,7 +3,6 @@ import '../../css/progressbar.css';
 
 const ProgressBar = ({ activeIndex, index, duration }) => { 
     
-    
     const isActive = (index === activeIndex);  // Check if the current index matches the active index
     const [progress, setProgress] = useState();
 
@@ -13,12 +12,11 @@ const ProgressBar = ({ activeIndex, index, duration }) => {
         const intervalId = setInterval(() => {
             setProgress(prev => {
                 if (prev < 100) {
-                     // Increment progress by a small value
                     return prev + 1;
+                }else{
+                    clearInterval(intervalId);
+                    return prev;
                 }
-                // If progress reaches 100, clear the interval
-                clearInterval(intervalId);
-                return prev;
             });
         }, duration / 100);
 
@@ -27,7 +25,6 @@ const ProgressBar = ({ activeIndex, index, duration }) => {
 
     }, [duration, activeIndex]); 
     
-    // Effect to reset progress when activeIndex changes
     useEffect(() => {
         setProgress(0);
     }, [activeIndex]);
