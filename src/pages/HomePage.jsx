@@ -15,6 +15,7 @@ import Status from "../components/Status";
 import { Menu, MenuItem } from "@mui/material";
 import applogo from '../assets/applogo.png'
 import loginuser from '../assets/loginuser.jpg';
+import CreateGroup from "../components/CreateGroup";
 
 function HomePage() {
 
@@ -25,8 +26,8 @@ function HomePage() {
     const [selectedChat, setSelectedChat]=useState(null);
     const [isProfile, setIsProfile]= useState(false);
     const [isStatus, setIsStatus]= useState(false);
+    const [isGroup, setIsGroup]= useState(false);
 
-    console.log(selectedChat);
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -74,6 +75,15 @@ function HomePage() {
     const closeOpenStatus=()=>{
         setIsStatus(false);
     }
+    
+    const closeOpenCreateGroup=()=>{
+        setIsGroup(false);
+    }
+
+    const handleCreateGroup=()=>{
+        setIsGroup(true);
+        handleClose();
+    }
 
     return (
         <div className="w-full h-screen bg-[#222E35] flex overflow-hidden">
@@ -82,9 +92,10 @@ function HomePage() {
                
                     {isProfile && <Profile closeOpenProfile={closeOpenProfile} /> }
                     {isStatus && <Status closeOpenStatus={closeOpenStatus}/>}
+                    {isGroup && <CreateGroup closeOpenCreateGroup={closeOpenCreateGroup}/>}
 
                 {   
-                    !isProfile && !isStatus &&
+                    !isProfile && !isStatus && !isGroup &&
                     (
                         <>
                         {/* Header */}
@@ -113,7 +124,7 @@ function HomePage() {
                                         'aria-labelledby': 'basic-button',
                                         }}
                                     >
-                                        <MenuItem onClick={handleClose}>New group</MenuItem>
+                                        <MenuItem onClick={handleCreateGroup}>New group</MenuItem>
                                         <MenuItem onClick={handleClose}>New community</MenuItem>
                                         <MenuItem onClick={handleClose}>Starred messages</MenuItem>
                                         <MenuItem onClick={handleClose}>Select Chats</MenuItem>
