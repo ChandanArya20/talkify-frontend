@@ -66,8 +66,8 @@ function ChatDetails({ userName }) {
 
             {/* Footer */}
             <div className="bg-[#222e35da]">
-                <div className="w-full h-14 flex items-center justify-between mx-auto">
-                    <div className="flex space-x-4 md:space-x-6 p-3 md:p-6 text-2xl my-auto text-gray-400">
+                <div className="w-full h-14 flex items-center justify-between">
+                    <div className="flex space-x-4 md:space-x-6 p-3 md:p-6 text-2xl text-gray-400">
                         {/* Smile and Plus icons */}
                         <FaRegFaceSmile className="cursor-pointer" />
                         <FaPlus className="cursor-pointer" />
