@@ -6,12 +6,18 @@ import { HiMicrophone } from "react-icons/hi2";
 import { useState } from "react";
 import { IoSend } from "react-icons/io5";
 import MessageCard from "./MessageCard";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ChatDetails({ userName }) {
 
     const [textMessage, setTextMessage] = useState("");
     const navigate = useNavigate();
+    const location=useLocation()
+    const userNameToRender=location.state !== null ? location.state : userName;
+
+    console.log(location.state);
+    console.log(userName);
+    console.log(userNameToRender);
 
     const handleSendMessage = () => {};
 
@@ -38,7 +44,7 @@ function ChatDetails({ userName }) {
                         {/* User details */}
                         <div className="">
                             <p className="text-white font-medium text-lg">
-                                {userName}
+                                {userNameToRender}
                             </p>
                             <p className="text-gray-400 text-sm">last seen</p>
                         </div>

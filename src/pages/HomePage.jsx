@@ -9,7 +9,7 @@ import ChatCard from "../components/ChatCard";
 import { Profiler, useEffect, useState } from "react";
 import chatsData from "../assets/chatsData";
 import ChatDetails from "../components/ChatDetails";
-import Profile from "../components/profile";
+import Profile from "../components/Profile";
 import { useNavigate } from "react-router-dom";
 import Status from "../components/Status";
 import { Menu, MenuItem } from "@mui/material";
@@ -60,15 +60,20 @@ function HomePage() {
 
     // Function to handle clicking on the current chat
     const handleCurrentChatClick = (chat) => {
-        setSelectedChat(chat);
 
+        setSelectedChat(chat);
+    
         // Navigate to chat details on small devices, otherwise set the current chat
         if (window.innerWidth < 640) {
-            navigate("/chat-details");
+            navigate("/chat-details",{state:chat.userName});
         } else {
             setCurrentChat(true);
         }
     };
+
+    useEffect(()=>{
+        console.log(selectedChat);
+    })
 
     // Function to handle clicking on the user's profile
     const handleProfileClick = () => {
@@ -233,7 +238,7 @@ function HomePage() {
             {/* Right Section */}
             <div className="hidden md:flex md:w-[60%] border-l-2 border-gray-700">
                 {currentChat ? (
-                    <ChatDetails userName={selectedChat.userName} />
+                    <ChatDetails userName={selectedChat?.userName} />
                 ) : (
                     <div className="w-full h-screen flex flex-col items-center justify-center">
                         {/* Image */}
