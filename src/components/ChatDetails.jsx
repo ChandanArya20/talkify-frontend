@@ -17,7 +17,7 @@ function ChatDetails({ userName }) {
 
     return (
         <div className="w-full md:w-[60%] h-screen md:h-screen flex flex-col justify-between fixed">
-            <div className="bg-[#222e35da]">
+            <div className="bg-[#222e35]">
                 {/* Header */}
                 <div className="w-[95%] h-14 flex items-center justify-between mx-auto">
                     <div className="flex space-x-3 items-center">
@@ -65,7 +65,7 @@ function ChatDetails({ userName }) {
             </div>
 
             {/* Footer */}
-            <div className="bg-[#222e35da]">
+            <div className="bg-[#222e35]">
                 <div className="w-full h-14 flex items-center justify-between">
                     <div className="flex space-x-4 md:space-x-6 p-3 md:p-6 text-2xl text-gray-400">
                         {/* Smile and Plus icons */}

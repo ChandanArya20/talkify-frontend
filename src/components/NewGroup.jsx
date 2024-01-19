@@ -24,7 +24,7 @@ const NewGroup = ({closeNewGroup}) => {
                 </div>
             </div>
 
-            <div className='w-full flex-1 overflow-y-scroll p-8'>
+            <div className='w-full flex-1 overflow-y-scroll p-3 md:p-8'>
                 {/* image section */}
                 <div className='mt-28 '>
                     <div className="h-60 flex items-center justify-center">

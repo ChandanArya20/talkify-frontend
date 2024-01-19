@@ -18,6 +18,7 @@ import loginuser from "../assets/loginuser.jpg";
 import CreateGroup from "../components/CreateGroup";
 
 function HomePage() {
+    
     const [query, setQuery] = useState("");
     const [chats, setChats] = useState(chatsData);
     const [isFilterClicked, setIsFilterClicked] = useState(false);

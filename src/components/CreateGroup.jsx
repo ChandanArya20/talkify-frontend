@@ -69,7 +69,7 @@ const CreateGroup = ({ closeOpenCreateGroup }) => {
                 </div>
 
                 {/* Display selected group members */}
-                <div className="w-full pt-5 px-8">
+                <div className="w-full pt-5 px-2 md:px-8">
                     <div className="flex flex-wrap">
                         {groupMember.size > 0 &&
                             Array.from(groupMember).map((item, index) => (
@@ -86,7 +86,7 @@ const CreateGroup = ({ closeOpenCreateGroup }) => {
                 </div>
 
                 {/* Search input */}
-                <div className="w-full pb-5 px-8">
+                <div className="w-full pb-5 px-2 md:px-8 pt-3">
                     <div className="w-full rounded-lg ">
                         <input
                             type="text"
