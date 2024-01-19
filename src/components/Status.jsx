@@ -53,7 +53,7 @@ const Status = ({ closeOpenStatus }) => {
             </div>
 
             {/* User statuses */}
-            <div className="mt-[200px] w-full overflow-y-auto h-[65vh] ">
+            <div className="mt-[140px] md:mt-[200px] w-full overflow-y-auto h-[65vh] ">
                 <div>
                     <p className="text-base text-[#216b5d] p-8">RECENT</p>
                 </div>
@@ -72,7 +72,7 @@ const Status = ({ closeOpenStatus }) => {
 
                 {/* Info about end-to-end encryption */}
                 <div className=" mx-auto">
-                    <div className="w-[100%] py-10 flex items-center justify-center space-x-1 text-xs text-gray-400">
+                    <div className="w-[100%] py-8 flex items-center justify-center space-x-1 text-xs text-gray-400">
                         <BsLockFill className="text-xs text-gray-400" />
                         <p className>
                             Your status updates are

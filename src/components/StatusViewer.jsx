@@ -72,9 +72,9 @@ const StatusViewer = ({ userName, status, closeStatusViewer }) => {
         <div className="w-full h-screen bg-[#222E35] overflow-hidden absolute z-50">
             {/* Left arrow and close button */}
             <div className="fixed left-0 top-0 flex flex-col text-white text-2xl h-full space-y-52 ml-2 md:mr-5 z-10">
-                <div className="h-20 flex space-x-2 items-center">
+                <div className="h-14 flex space-x-2 items-center">
                     <IoMdArrowBack
-                        className="cursor-pointer"
+                        className="cursor-pointer text-3xl md:text-2xl"
                         onClick={closeStatusViewer}
                     />
                     <StatusCard {...item} />

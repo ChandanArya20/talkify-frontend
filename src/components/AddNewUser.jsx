@@ -34,7 +34,7 @@ const AddNewUser = ({ closeAddNewUserSection }) => {
             </div>
 
             {/* Search input */}
-            <div className="h-9 rounded-lg flex justify-items-start items-center space-x-5 bg-[#202C33] my-2 mx-1 md:mx-3">
+            <div className="h-9 rounded-lg flex justify-items-start items-center space-x-3 md:space-x-4 bg-[#202C33] my-2 mx-1 md:mx-3">
                 <div className="w-12 h-12 ml-1 flex items-center justify-center">
                     {
                         !isSearchClicked ?

@@ -179,7 +179,7 @@ function HomePage() {
                         </div>
                         {/* Search Bar */}
                         <div className="ml-3 mt-2 flex items-center">
-                            <div className="w-[87%] md:w-[92%] h-9 rounded-lg flex justify-items-start items-center space-x-8 bg-[#202C33]">
+                            <div className="w-[87%] md:w-[92%] h-9 rounded-lg flex justify-items-start items-center space-x-4 md:space-x-6 bg-[#202C33]">
                                 <div className="w-12 h-12 ml-1 flex items-center justify-center">
                                     {
                                         !isSearchClicked ?
