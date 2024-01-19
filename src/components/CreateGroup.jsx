@@ -7,9 +7,8 @@ import { IoMdArrowForward } from "react-icons/io";
 import NewGroup from "./NewGroup";
 
 const CreateGroup = ({ closeOpenCreateGroup }) => {
-    // State to manage the selected group members
-    const [groupMember, setGroupMember] = useState(new Set());
-    // State for search query
+    
+    const [groupMember, setGroupMember] = useState(new Set());  // State to manage the selected group members
     const [query, setQuery] = useState("");
     // State to store chat users
     const [chatUsers, setChatUsers] = useState(chatUserData);

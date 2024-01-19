@@ -3,7 +3,7 @@ import { MdOutlineChat } from "react-icons/md";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { RiWechat2Line } from "react-icons/ri";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { IoIosSearch } from "react-icons/io";
+import { IoIosSearch, IoMdArrowBack } from "react-icons/io";
 import { IoFilter } from "react-icons/io5";
 import ChatCard from "../components/ChatCard";
 import { Profiler, useEffect, useState } from "react";
@@ -16,6 +16,7 @@ import { Menu, MenuItem } from "@mui/material";
 import applogo from "../assets/applogo.png";
 import loginuser from "../assets/loginuser.jpg";
 import CreateGroup from "../components/CreateGroup";
+import AddNewUser from "../components/AddNewUser";
 
 function HomePage() {
     
@@ -27,6 +28,8 @@ function HomePage() {
     const [isProfile, setIsProfile] = useState(false);
     const [isStatus, setIsStatus] = useState(false);
     const [isGroup, setIsGroup] = useState(false);
+    const [isAddNewUser, setIsAddNewUser] = useState(false);
+    const [isSearchClicked, setIsSearchClicked]=useState(false);
     const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -93,17 +96,20 @@ function HomePage() {
         handleClose();
     };
 
+    const closeAddNewUserSection=()=>{
+        setIsAddNewUser(false);
+    }
+
     return (
         <div className="w-full h-screen bg-[#222E35] flex overflow-hidden">
             {/* Left Section */}
             <div className="w-[100%] md:w-[40%] bg-[#111B21] border-l-6 border-gray-200">
                 {isProfile && <Profile closeOpenProfile={closeOpenProfile} />}
                 {isStatus && <Status closeOpenStatus={closeOpenStatus} />}
-                {isGroup && (
-                    <CreateGroup closeOpenCreateGroup={closeOpenCreateGroup} />
-                )}
+                {isGroup && <CreateGroup closeOpenCreateGroup={closeOpenCreateGroup} />}
+                {isAddNewUser && <AddNewUser closeAddNewUserSection={closeAddNewUserSection}/>}
 
-                {!isProfile && !isStatus && !isGroup && (
+                {!isProfile && !isStatus && !isGroup && !isAddNewUser && (
                     <>
                         {/* Header */}
                         <div className="h-14 bg-[#222e35da] flex items-center">
@@ -125,7 +131,7 @@ function HomePage() {
                                         onClick={() => setIsStatus(true)}
                                     />
                                     <RiWechat2Line className="cursor-pointer" />
-                                    <MdOutlineChat className="cursor-pointer" />
+                                    <MdOutlineChat className="cursor-pointer" onClick={()=>setIsAddNewUser(true)} />
                                     <div>
                                         <BiDotsVerticalRounded
                                             className="cursor-pointer"
@@ -169,15 +175,29 @@ function HomePage() {
                         {/* Search Bar */}
                         <div className="ml-3 mt-2 flex items-center">
                             <div className="w-[87%] md:w-[92%] h-9 rounded-lg flex justify-items-start items-center space-x-8 bg-[#202C33]">
-                                <IoIosSearch className="text-gray-400 ml-4 text-xl cursor-pointer" />
+                                <div className="w-12 h-12 ml-1 flex items-center justify-center">
+                                    {
+                                        !isSearchClicked ?
+                                        <IoIosSearch 
+                                            className="text-gray-400 text-xl cursor-pointer" 
+                                            onClick={()=>setIsSearchClicked(true)}
+                                        /> :
+                                        <IoMdArrowBack
+                                            className="text-[#00A884] text-2xl cursor-pointer"
+                                            onClick={()=>setIsSearchClicked(false)}
+                                        />
+                                    }
+                                </div>
                                 <input
                                     type="text"
                                     className="bg-transparent focus:outline-none text-white text-sm w-full"
                                     placeholder="Search or start new chat"
+                                    autoFocus={isSearchClicked}
                                     onChange={(e) => {
                                         setQuery(e.target.value);
                                         handleSearch(e.target.value);
                                     }}
+                                    onClick={()=>setIsSearchClicked(true)}
                                 />
                             </div>
                             <div
