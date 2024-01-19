@@ -21,9 +21,9 @@ const AddNewUser = ({ closeAddNewUserSection }) => {
     return (
         <div className="flex w-full h-full flex-col justify-between">
             {/* Group header */}
-            <div className="w-full h-28 bg-[#222e35] ">
-                <div className="w-full h-full flex flex-col justify-end">
-                    <div className="w-full flex space-x-7 items-center font-semibold text-gray-200 pl-6 mb-4">
+            <div className="w-full h-14 md:h-28 bg-[#222e35] ">
+                <div className="w-full h-full flex flex-col justify-center md:justify-end">
+                    <div className="w-full flex space-x-7 items-center font-semibold text-gray-300 ml-2 md:ml-6 md:mb-4">
                         <IoMdArrowBack
                             className="cursor-pointer text-2xl"
                             onClick={closeAddNewUserSection}
@@ -34,7 +34,7 @@ const AddNewUser = ({ closeAddNewUserSection }) => {
             </div>
 
             {/* Search input */}
-            <div className="h-9 rounded-lg flex justify-items-start items-center space-x-5 bg-[#202C33] my-2 mx-3">
+            <div className="h-9 rounded-lg flex justify-items-start items-center space-x-5 bg-[#202C33] my-2 mx-1 md:mx-3">
                 <div className="w-12 h-12 ml-1 flex items-center justify-center">
                     {
                         !isSearchClicked ?
@@ -63,7 +63,7 @@ const AddNewUser = ({ closeAddNewUserSection }) => {
 
             <div className="flex-1 overflow-y-scroll">
                 <div>
-                    <p className="text-base text-[#00a884ab] p-8">CONTACATS ON WHATSAPP</p>
+                    <p className="text-base text-[#00a884ab] p-8">CONTACTS ON WHATSAPP</p>
                 </div>
 
                 {/* Display available chat users */}

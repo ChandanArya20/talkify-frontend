@@ -55,11 +55,11 @@ const CreateGroup = ({ closeOpenCreateGroup }) => {
             !isNewGroup ?
             <div className="flex w-full h-full flex-col justify-between">
                 {/* Group header */}
-                <div className="w-full h-28 bg-[#222e35] ">
-                    <div className="w-full h-full flex flex-col justify-end">
-                        <div className="w-full flex space-x-5 items-center text-xl font-semibold text-gray-200 pl-6 mb-4">
+                <div className="w-full h-14 md:h-28 bg-[#222e35] ">
+                    <div className="w-full h-full flex flex-col justify-center md:justify-end">
+                        <div className="w-full flex space-x-5 items-center text-xl font-semibold text-gray-300 ml-2 md:ml-6 md:mb-4">
                             <IoMdArrowBack
-                                className="cursor-pointer"
+                                className="cursor-pointer text-2xl"
                                 onClick={closeOpenCreateGroup}
                             />
                             <p>Add group members</p>

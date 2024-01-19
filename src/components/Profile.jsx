@@ -24,10 +24,10 @@ const Profile = ({ closeOpenProfile }) => {
     return (
         <div>
             {/* profile header */}
-            <div className="w-full md:w-[40%] h-28 bg-[#222e35da] fixed top-0 z-50">
-                <div className="w-full md:md:w-[40%] h-full flex flex-col justify-end">
-                    <div className="flex space-x-5 items-center text-xl font-medium text-gray-200 ml-6 mb-4">
-                        <IoMdArrowBack className="cursor-pointer" onClick={closeOpenProfile}/>
+            <div className="w-full md:w-[40%] h-14 md:h-28 bg-[#222e35da] fixed top-0 z-50">
+                <div className="w-full md:w-[40%] h-full flex flex-col justify-center md:justify-end">
+                    <div className="flex space-x-5 items-center text-xl font-medium text-gray-300 ml-2 md:ml-6 md:mb-4">
+                        <IoMdArrowBack className="cursor-pointer text-2xl" onClick={closeOpenProfile}/>
                         <p>Profile</p>
                     </div>
                 </div>

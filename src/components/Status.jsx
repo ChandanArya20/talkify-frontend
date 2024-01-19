@@ -36,11 +36,11 @@ const Status = ({ closeOpenStatus }) => {
         <div className="flex flex-col">
             {/* Status header */}
             <div className="w-full md:w-[40%] fixed top-0 z-50">
-                <div className="w-full h-28 bg-[#222e35da] ">
-                    <div className="w-full md:md:w-[40%] h-full flex flex-col justify-end">
-                        <div className="flex space-x-5 items-center text-xl font-medium text-gray-200 ml-6 mb-4">
+                <div className="w-full h-14 md:h-28 bg-[#222e35da] ">
+                    <div className="w-full md:md:w-[40%] h-full flex flex-col justify-center md:justify-end">
+                        <div className="flex space-x-5 items-center text-xl font-medium text-gray-300 ml-2 md:ml-6 md:mb-4">
                             <IoMdArrowBack
-                                className="cursor-pointer"
+                                className="cursor-pointer text-2xl"
                                 onClick={closeOpenStatus}
                             />
                             <p>Status</p>
