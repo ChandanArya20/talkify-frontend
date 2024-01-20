@@ -71,10 +71,6 @@ function HomePage() {
         }
     };
 
-    useEffect(()=>{
-        console.log(selectedChat);
-    })
-
     // Function to handle clicking on the user's profile
     const handleProfileClick = () => {
         setIsProfile(true);

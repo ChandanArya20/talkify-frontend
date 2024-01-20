@@ -16,7 +16,7 @@ const SelectedGroupMember = ({ handleRemoveMember, member }) => {
                     </p>
                 </div>
 
-                <div className="w-full h-full pr-3 flex items-center">
+                <div className="w-full h-full pr-2 md:pr-3 flex items-center">
                     <IoCloseOutline
                         className="cursor-pointer text-gray-300 text-base rounded-full hover:bg-slate-400"
                         onClick={handleRemoveMember}
