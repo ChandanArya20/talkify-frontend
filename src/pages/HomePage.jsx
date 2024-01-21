@@ -17,6 +17,7 @@ import applogo from "../assets/applogo.png";
 import loginuser from "../assets/loginuser.jpg";
 import CreateGroup from "../components/CreateGroup";
 import AddNewUser from "../components/AddNewUser";
+import HomePageImage from "../assets/login-image.png";
 
 function HomePage() {
     
@@ -240,8 +241,8 @@ function HomePage() {
                         {/* Image */}
                         <div className="w-[270px]">
                             <img
-                                className="rounded-md brightness-90"
-                                src="https://img.freepik.com/free-vector/business-people-arranging-appointment-digital-booking-app_74855-20006.jpg?w=826&t=st=1705066079~exp=1705066679~hmac=3cc2a5cbd4c09aaaeb62ba791709f1f7c2798a4718a6528cf30a6a6b74173ff3"
+                                className="w-full rounded-md bg-slate-700"
+                                src={HomePageImage}
                                 alt=""
                             />
                             <div className="flex flex-col items-center relative bottom-7">
