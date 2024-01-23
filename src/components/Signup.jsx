@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { currentUser, register } from "../Redux/actions/user-action";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ({ closeSignup }) => {
 
@@ -10,8 +14,30 @@ const Signup = ({ closeSignup }) => {
     });
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const dispatch=useDispatch();
+    const {userData, isAuthenticated}=useSelector(state=>state.userReducer);
+    const navigate=useNavigate();
 
-    const handleSignup = () => {};
+    useEffect(()=>{
+        console.log(userData);
+    },[userData])
+
+    useEffect(()=>{
+        dispatch(currentUser());
+    },[])
+
+
+    const handleSignup = (e) => {
+        e.preventDefault();
+        console.log("user ",user);
+        if(user.password!==confirmPassword){
+            toast.error("Password don't match")
+            return
+        }
+        dispatch(register(user))
+
+    };
+
 
     return (
         <div className="w-full md:w-[50%] px-5 md:px-[2vw] lg:px-[4vw]">
@@ -22,28 +48,28 @@ const Signup = ({ closeSignup }) => {
                     type="text"
                     placeholder="Name"
                     value={user.name}
-                    onChange={(e) => setUser({ name: e.target.value })}
+                    onChange={(e) => setUser({...user, name: e.target.value })}
                 />
                 <input
                     className="w-full bg-[#EEEEEE] dark:bg-slate-600  dark:text-white px-3 py-2 my-1.5 outline-none text-sm"
                     type="email"
                     placeholder="Email"
                     value={user.email}
-                    onChange={(e) => setUser({ email: e.target.value })}
+                    onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
                 <input
                     className="w-full bg-[#EEEEEE] dark:bg-slate-600  dark:text-white px-3 py-2 my-1.5 outline-none text-sm"
                     type="tel"
                     placeholder="phone (Optional)"
                     value={user.phone}
-                    onChange={(e) => setUser({ phone: e.target.value })}
+                    onChange={(e) => setUser({ ...user, phone: e.target.value })}
                 />
                 <input
                     className="w-full bg-[#EEEEEE] dark:bg-slate-600  dark:text-white px-3 py-2 my-1.5 outline-none text-sm"
                     type="password"
                     placeholder="Create Password"
                     value={user.password}
-                    onChange={(e) => setUser({ password: e.target.value })}
+                    onChange={(e) => setUser({ ...user, password: e.target.value })}
                 />
                 <input
                     className="w-full bg-[#EEEEEE] dark:bg-slate-600  dark:text-white px-3 py-2 my-1.5 outline-none text-sm"

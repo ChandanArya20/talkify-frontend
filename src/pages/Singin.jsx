@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import loginImage from "../assets/login-image.png";
 import Signup from "../components/Signup";
 
@@ -10,15 +10,21 @@ const Singin = () => {
 
     const [loading, setLoading] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
+    
 
-    const handleLogin = () => {};
+    const handleLogin = (e) => {
+        e.preventDefault();
+    
+        console.log("logging...");
+
+    };
 
     const closeSignup=()=>{
         setIsSignup(false);
     }
 
     return (
-        <div className="w-full h-screen flex justify-center items-center dark:bg-slate-800 ">
+        <div className="w-full h-screen flex justify-center items-center bg-slate-100 dark:bg-slate-800 ">
             <div
                 className="w-full h-full md:w-[60%] md:h-auto flex items-center bg-white dark:bg-slate-700 rounded-md py-10"
                 style={{ boxShadow: "0 0 35px rgba(0, 0, 0, 0.2)" }}
@@ -65,7 +71,7 @@ const Singin = () => {
                                 <button
                                     className="px-10 py-2 bg-[#06CF9C] rounded-full text-white uppercase font-medium text-sm"
                                 >
-                                    {loading ? "Signing..." : "Sign in"}
+                                    {loading ? "Sign in..." : "Sign in"}
                                     {loading && (
                                         <div className="loading-overlay-btn">
                                             <ClipLoader color="#620c88" />
