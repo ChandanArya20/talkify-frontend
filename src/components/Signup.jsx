@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { currentUser, register } from "../Redux/actions/user-action";
+import { register } from "../Redux/actions/user-action";
 import { useNavigate } from "react-router-dom";
 
 const Signup = ({ closeSignup }) => {
+
+    const {isAuthenticated}=useSelector(state=>state.userReducer);
+    const navigate=useNavigate();
+
+    useEffect(()=>{
+        isAuthenticated && navigate("/");
+    },[isAuthenticated])
 
     const [user, setUser] = useState({
         name: "",
@@ -15,16 +22,7 @@ const Signup = ({ closeSignup }) => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const dispatch=useDispatch();
-    const {userData, isAuthenticated}=useSelector(state=>state.userReducer);
-    const navigate=useNavigate();
-
-    useEffect(()=>{
-        console.log(userData);
-    },[userData])
-
-    useEffect(()=>{
-        dispatch(currentUser());
-    },[])
+    
 
 
     const handleSignup = (e) => {
@@ -34,7 +32,8 @@ const Signup = ({ closeSignup }) => {
             toast.error("Password don't match")
             return
         }
-        dispatch(register(user))
+    
+        dispatch(register(user));
 
     };
 

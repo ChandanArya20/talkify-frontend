@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react";
 import loginImage from "../assets/login-image.png";
 import Signup from "../components/Signup";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../Redux/actions/user-action";
 
 const Singin = () => {
+
+    const {isAuthenticated}=useSelector(state=>state.userReducer);
+    const navigate=useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        isAuthenticated && navigate("/");
+    },[isAuthenticated])
+
     const [userData, setUserData] = useState({
         email: "",
         password: "",
@@ -10,14 +22,18 @@ const Singin = () => {
 
     const [loading, setLoading] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
+   
     
 
     const handleLogin = (e) => {
         e.preventDefault();
+
+        dispatch(login(userData));
     
         console.log("logging...");
 
     };
+
 
     const closeSignup=()=>{
         setIsSignup(false);
@@ -47,7 +63,7 @@ const Singin = () => {
                                 placeholder="Email"
                                 value={userData.email}
                                 onChange={(e) =>
-                                    setUserData({ email: e.target.value })
+                                    setUserData({ ...userData, email: e.target.value })
                                 }
                             />
                             <input
@@ -57,7 +73,7 @@ const Singin = () => {
                                 password={userData.password}
                                 onChange={(e) =>
                                     setUserData({
-                                        password: e.target.value,
+                                        ...userData, password: e.target.value,
                                     })
                                 }
                             />

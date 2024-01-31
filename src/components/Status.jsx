@@ -74,7 +74,7 @@ const Status = ({ closeOpenStatus }) => {
                 <div className=" mx-auto">
                     <div className="w-[100%] py-8 flex items-center justify-center space-x-1 text-xs text-gray-400">
                         <BsLockFill className="text-xs text-gray-400" />
-                        <p className>
+                        <p>
                             Your status updates are
                             <span className="text-[#53BDEB] ml-1">
                                 end-to-end-encrypted

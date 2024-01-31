@@ -18,8 +18,17 @@ import loginuser from "../assets/loginuser.jpg";
 import CreateGroup from "../components/CreateGroup";
 import AddNewUser from "../components/AddNewUser";
 import HomePageImage from "../assets/login-image.png";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Redux/actions/user-action";
 
 function HomePage() {
+
+    const {isAuthenticated}=useSelector(state=>state.userReducer);
+    const navigate=useNavigate();
+
+    useEffect(()=>{
+        !isAuthenticated && navigate("/signing");
+    },[isAuthenticated])
     
     const [query, setQuery] = useState("");
     const [chats, setChats] = useState(chatsData);
@@ -31,7 +40,7 @@ function HomePage() {
     const [isGroup, setIsGroup] = useState(false);
     const [isAddNewUser, setIsAddNewUser] = useState(false);
     const [isSearchClicked, setIsSearchClicked]=useState(false);
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -102,6 +111,10 @@ function HomePage() {
         setIsAddNewUser(false);
     }
 
+    const handleLogout=()=>{
+        dispatch(logout());
+    }
+
     return (
         <div className="w-full h-screen bg-[#222E35] flex overflow-hidden">
             {/* Left Section */}
@@ -166,7 +179,7 @@ function HomePage() {
                                             <MenuItem onClick={handleClose}>
                                                 Settings
                                             </MenuItem>
-                                            <MenuItem onClick={handleClose}>
+                                            <MenuItem onClick={handleLogout}>
                                                 Log out
                                             </MenuItem>
                                         </Menu>

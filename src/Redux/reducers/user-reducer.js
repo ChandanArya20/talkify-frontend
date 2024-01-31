@@ -1,7 +1,12 @@
+const user=JSON.parse(localStorage.getItem("user"));
+const isLoggedin=localStorage.getItem("isLoggedin") === "true";;
+
 const initialState = {
-    userData: null,
-    isAuthenticated: false,
+    userData: user || null,
+    isAuthenticated: isLoggedin || false,
 };
+
+
 
 export const userReducer = (state = initialState, { type, payload }) => {
     switch (type) {
@@ -13,6 +18,9 @@ export const userReducer = (state = initialState, { type, payload }) => {
 
         case "LOGIN":
             return { ...state, isAuthenticated: true };
+
+        case "LOGOUT":
+            return { ...state, userData:null, isAuthenticated: false };
 
         default:
             return state;
