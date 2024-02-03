@@ -6,8 +6,6 @@ const initialState = {
     isAuthenticated: isLoggedin || false,
 };
 
-
-
 export const userReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case "REGISTER":

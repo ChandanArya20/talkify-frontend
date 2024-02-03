@@ -19,7 +19,7 @@ import CreateGroup from "../components/CreateGroup";
 import AddNewUser from "../components/AddNewUser";
 import HomePageImage from "../assets/login-image.png";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../Redux/actions/user-action";
+import { logout } from "../Redux/Auth/action";
 
 function HomePage() {
 

@@ -1,0 +1,5 @@
+export const REGISTER="REGISTER"
+export const REQ_USER="REQ_USER"
+export const LOGIN="LOGIN"
+export const LOGOUT="LOGOUT"
+export const SEARCH_USER="SEARCH_USER"

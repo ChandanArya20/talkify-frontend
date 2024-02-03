@@ -3,7 +3,7 @@ import loginImage from "../assets/login-image.png";
 import Signup from "../components/Signup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../Redux/actions/user-action";
+import { login } from "../Redux/Auth/action";
 import axios from "axios";
 import { toast } from "react-toastify";
 

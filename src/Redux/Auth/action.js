@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_API_URL } from "../../config/api";
+import { LOGIN, LOGOUT, REGISTER, REQ_USER, SEARCH_USER } from "./action-type";
 
 export const register = (userData) => async (dispatch) => {
    
@@ -9,7 +10,7 @@ export const register = (userData) => async (dispatch) => {
     localStorage.setItem("user", JSON.stringify(resData));
     localStorage.setItem("isLoggedin", JSON.stringify(true));
     console.log("User registered ", resData);
-    dispatch({ type: "REGISTER", payload: resData });
+    dispatch({ type: REGISTER, payload: resData });
 };
 
 export const login = (userData) => async(dispatch) => {
@@ -20,7 +21,7 @@ export const login = (userData) => async(dispatch) => {
     localStorage.setItem("user", JSON.stringify(resData));
     localStorage.setItem("isLoggedin", JSON.stringify(true));
     console.log("User logged in ", resData);
-    dispatch({ type: "LOGIN", payload: resData });
+    dispatch({ type: LOGIN, payload: resData });
 };
 
 export const logout = () => async (dispatch) => {
@@ -36,7 +37,7 @@ export const logout = () => async (dispatch) => {
     } finally{
         localStorage.removeItem("user");
         localStorage.setItem("isLoggedin",JSON.stringify(false));
-        dispatch({ type: "LOGOUT", payload: null });
+        dispatch({ type: LOGOUT, payload: null });
     }
 };
 
@@ -47,7 +48,7 @@ export const currentUser = () => async (dispatch) => {
         });
         const resData = response.data;
         console.log("User ", resData);
-        dispatch({ type: "REQ_USER", payload: resData });
+        dispatch({ type: REQ_USER, payload: resData });
     } catch (error) {
         console.log(error);
     }
@@ -61,7 +62,7 @@ export const SearchUser = (query) => async (dispatch) => {
         );
         const resData = response.data;
         console.log("Users ", resData);
-        dispatch({ type: "SEARCH_USER", payload: resData });
+        dispatch({ type: SEARCH_USER, payload: resData });
     } catch (error) {
         console.log(error);
     }
