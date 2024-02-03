@@ -2,37 +2,25 @@ import axios from "axios";
 import { BASE_API_URL } from "../../config/api";
 
 export const register = (userData) => async (dispatch) => {
-    try {
-        const response = await axios.post(
-            `${BASE_API_URL}/user/register`,
-            userData,
-            { withCredentials: true }
-        );
-        const resData = response.data;
-        console.log("User registered ", resData);
-        localStorage.setItem("user", JSON.stringify(resData));
-        localStorage.setItem("isLoggedin", JSON.stringify(true));
-        dispatch({ type: "REGISTER", payload: resData });
-    } catch (error) {
-        console.log(error);
-    }
+   
+    const response = await axios.post(`${BASE_API_URL}/user/register`,userData,{ withCredentials: true });
+    
+    const resData = response.data;
+    localStorage.setItem("user", JSON.stringify(resData));
+    localStorage.setItem("isLoggedin", JSON.stringify(true));
+    console.log("User registered ", resData);
+    dispatch({ type: "REGISTER", payload: resData });
 };
 
-export const login = (userData) => async (dispatch) => {
-    try {
-        const response = await axios.post(
-            `${BASE_API_URL}/user/login`,
-            userData,
-            { withCredentials: true }
-        );
-        const resData = response.data;
-        console.log("User loggedin ", resData);
-        localStorage.setItem("user", JSON.stringify(resData));
-        localStorage.setItem("isLoggedin", JSON.stringify(true));
-        dispatch({ type: "LOGIN", payload: resData });
-    } catch (error) {
-        console.log(error);
-    }
+export const login = (userData) => async(dispatch) => {
+    
+    const response = await axios.post(`${BASE_API_URL}/user/login`,userData,{ withCredentials: true });
+    
+    const resData = response.data;
+    localStorage.setItem("user", JSON.stringify(resData));
+    localStorage.setItem("isLoggedin", JSON.stringify(true));
+    console.log("User logged in ", resData);
+    dispatch({ type: "LOGIN", payload: resData });
 };
 
 export const logout = () => async (dispatch) => {

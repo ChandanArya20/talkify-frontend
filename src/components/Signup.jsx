@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { register } from "../Redux/actions/user-action";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Signup = ({ closeSignup }) => {
 
@@ -25,15 +26,26 @@ const Signup = ({ closeSignup }) => {
     
 
 
-    const handleSignup = (e) => {
+    const handleSignup = async(e) => {
+
         e.preventDefault();
-        console.log("user ",user);
+        
         if(user.password!==confirmPassword){
             toast.error("Password don't match")
             return
         }
-    
-        dispatch(register(user));
+        try {
+            await dispatch(register(user));
+        } catch (error) {
+            if(axios.isAxiosError(error)){
+                if(error.response?.status===409){
+                    toast.error(error.response.data)
+                } else{
+                    console.log(error.response?.data);
+                    console.log(error);
+                }
+            }
+        }
 
     };
 

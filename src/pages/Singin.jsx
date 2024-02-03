@@ -4,6 +4,8 @@ import Signup from "../components/Signup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../Redux/actions/user-action";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Singin = () => {
 
@@ -25,13 +27,23 @@ const Singin = () => {
    
     
 
-    const handleLogin = (e) => {
+    const handleLogin = async(e) => {
         e.preventDefault();
-
-        dispatch(login(userData));
-    
-        console.log("logging...");
-
+        try {
+            await dispatch(login(userData));
+            console.log("logging...");
+        } catch (error) {
+            if(axios.isAxiosError(error)){
+                if(error.response?.status===404){
+                    toast.error("Account not found with this email")
+                }else if(error.response?.status===401){
+                    toast.error("Invalid Password")
+                } else{
+                    console.log(error.response?.data);
+                    console.log(error);
+                }
+            }
+        }
     };
 
 
