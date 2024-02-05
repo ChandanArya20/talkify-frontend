@@ -1,23 +1,30 @@
+import { LOGIN, LOGOUT, REQ_USER, REGISTER, SEARCH_USER} from "./actionType";
+
 const user=JSON.parse(localStorage.getItem("user"));
-const isLoggedin=localStorage.getItem("isLoggedin") === "true";;
+const isLoggedin=localStorage.getItem("isLoggedin") === "true";
 
 const initialState = {
-    userData: user || null,
+    currentUser: user || null,
     isAuthenticated: isLoggedin || false,
 };
 
 export const userReducer = (state = initialState, { type, payload }) => {
+    
     switch (type) {
-        case "REGISTER":
+
+        case REGISTER:
             return { ...state, userData: payload, isAuthenticated: true };
         
-        case "REQ_USER":
-            return{...state,userData:payload};
+        case REQ_USER:
+            return {...state,currentUser:payload};
 
-        case "LOGIN":
-            return { ...state, isAuthenticated: true };
+        case SEARCH_USER:
+            return {...state,searchUser:payload};
 
-        case "LOGOUT":
+        case LOGIN:
+            return { ...state, currentUser:payload, isAuthenticated: true };
+
+        case LOGOUT:
             return { ...state, userData:null, isAuthenticated: false };
 
         default:

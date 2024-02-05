@@ -1,24 +1,23 @@
-const user=JSON.parse(localStorage.getItem("user"));
-const isLoggedin=localStorage.getItem("isLoggedin") === "true";;
+import { CREATE_CHAT, CREATE_GROUP, GET_USERS_CHAT } from "./actionType";
 
 const initialState = {
-    userData: user || null,
-    isAuthenticated: isLoggedin || false,
+    chats:[],
+    createdChat:null,
+    createdGroup:null
 };
 
-export const userReducer = (state = initialState, { type, payload }) => {
+export const chatReducer = (state = initialState, { type, payload }) => {
+
     switch (type) {
-        case "REGISTER":
-            return { ...state, userData: payload, isAuthenticated: true };
-        
-        case "REQ_USER":
-            return{...state,userData:payload};
 
-        case "LOGIN":
-            return { ...state, isAuthenticated: true };
+        case CREATE_CHAT:
+            return { ...state, createdChat: payload };
 
-        case "LOGOUT":
-            return { ...state, userData:null, isAuthenticated: false };
+        case CREATE_GROUP:
+            return { ...state, createdGroup: payload };
+
+        case GET_USERS_CHAT:
+            return { ...state, chats: payload };
 
         default:
             return state;

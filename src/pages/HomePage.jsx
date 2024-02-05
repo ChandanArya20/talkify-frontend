@@ -19,7 +19,7 @@ import CreateGroup from "../components/CreateGroup";
 import AddNewUser from "../components/AddNewUser";
 import HomePageImage from "../assets/login-image.png";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../Redux/Auth/action";
+import { currentUser, logout } from "../Redux/Auth/action";
 
 function HomePage() {
 
@@ -41,6 +41,7 @@ function HomePage() {
     const [isAddNewUser, setIsAddNewUser] = useState(false);
     const [isSearchClicked, setIsSearchClicked]=useState(false);
     const dispatch = useDispatch();
+    const currentUser=useSelector(store=>store.userReducer.currentUser);
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -109,11 +110,12 @@ function HomePage() {
 
     const closeAddNewUserSection=()=>{
         setIsAddNewUser(false);
-    }
+    };
 
     const handleLogout=()=>{
         dispatch(logout());
-    }
+    };
+
 
     return (
         <div className="w-full h-screen bg-[#222E35] flex overflow-hidden">

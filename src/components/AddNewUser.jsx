@@ -3,19 +3,26 @@ import { IoIosSearch, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import SelectedGroupMember from "./SelectedGroupMember";
 import chatUserData from "../assets/chatUserData";
 import ChatUserCard from "./ChatUserCard";
+import { useDispatch, useSelector } from "react-redux";
+import { SearchUser } from "../Redux/Auth/action";
+import { createChat } from "../Redux/Chat/action";
 
 const AddNewUser = ({ closeAddNewUserSection }) => {
     
     const [query, setQuery] = useState("");
     const [isSearchClicked, setIsSearchClicked]=useState(false);
-    const [chatUsers, setChatUsers] = useState(chatUserData);
+    const userStore=useSelector(state=>state.userReducer);
+    const dispatch=useDispatch();
+
 
     // Function to handle search
     const handleSearch = (query) => {
-        const filteredChatUsers = chatUserData.filter((chatUser) =>
-            chatUser.userName.toLowerCase().includes(query.toLowerCase())
-        );
-        setChatUsers(filteredChatUsers);
+        dispatch(SearchUser(query));
+    };
+
+
+    const handleCreateChat=(participantId)=>{
+        dispatch(createChat(participantId));
     };
 
     return (
@@ -68,9 +75,9 @@ const AddNewUser = ({ closeAddNewUserSection }) => {
 
                 {/* Display available chat users */}
                 <div >
-                    {chatUsers.map((item, index) => (
-                        <div key={index} onClick={() => addGroupMember(item)}>
-                            <ChatUserCard {...item} />
+                    {userStore.searchUser?.map((user, index) => (
+                        <div key={index} onClick={() => handleCreateChat(user.id)}>
+                            <ChatUserCard {...user} />
                         </div>
                     ))}
                 </div>

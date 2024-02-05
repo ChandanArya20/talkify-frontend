@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_API_URL } from "../../config/api";
-import { LOGIN, LOGOUT, REGISTER, REQ_USER, SEARCH_USER } from "./action-type";
+import { LOGIN, LOGOUT, REGISTER, REQ_USER, SEARCH_USER } from "./actionType";
 
 export const register = (userData) => async (dispatch) => {
    
@@ -8,7 +8,7 @@ export const register = (userData) => async (dispatch) => {
     
     const resData = response.data;
     localStorage.setItem("user", JSON.stringify(resData));
-    localStorage.setItem("isLoggedin", JSON.stringify(true));
+    localStorage.setItem("isLoggedin", 'true');
     console.log("User registered ", resData);
     dispatch({ type: REGISTER, payload: resData });
 };
@@ -19,8 +19,9 @@ export const login = (userData) => async(dispatch) => {
     
     const resData = response.data;
     localStorage.setItem("user", JSON.stringify(resData));
-    localStorage.setItem("isLoggedin", JSON.stringify(true));
+    localStorage.setItem("isLoggedin", 'true');
     console.log("User logged in ", resData);
+  
     dispatch({ type: LOGIN, payload: resData });
 };
 
@@ -36,7 +37,7 @@ export const logout = () => async (dispatch) => {
         console.log(error);
     } finally{
         localStorage.removeItem("user");
-        localStorage.setItem("isLoggedin",JSON.stringify(false));
+        localStorage.removeItem("isLoggedin");
         dispatch({ type: LOGOUT, payload: null });
     }
 };
@@ -56,12 +57,11 @@ export const currentUser = () => async (dispatch) => {
 
 export const SearchUser = (query) => async (dispatch) => {
     try {
-        const response = await axios.get(
-            `${BASE_API_URL}/user/search-user?query=${query}`,
-            { withCredentials: true }
+        const response = await axios.get(`${BASE_API_URL}/user/search-users?query=${query}`,
+        { withCredentials: true }
         );
         const resData = response.data;
-        console.log("Users ", resData);
+        console.log("search user ", resData);
         dispatch({ type: SEARCH_USER, payload: resData });
     } catch (error) {
         console.log(error);
