@@ -19,11 +19,12 @@ import CreateGroup from "../components/CreateGroup";
 import AddNewUser from "../components/AddNewUser";
 import HomePageImage from "../assets/login-image.png";
 import { useDispatch, useSelector } from "react-redux";
-import { currentUser, logout } from "../Redux/Auth/action";
+import { logout } from "../Redux/Auth/action";
+import { getUsersChat } from "../Redux/Chat/action";
 
 function HomePage() {
 
-    const {isAuthenticated}=useSelector(state=>state.userReducer);
+    const {isAuthenticated}=useSelector(state=>state.userStore);
     const navigate=useNavigate();
 
     useEffect(()=>{
@@ -41,10 +42,20 @@ function HomePage() {
     const [isAddNewUser, setIsAddNewUser] = useState(false);
     const [isSearchClicked, setIsSearchClicked]=useState(false);
     const dispatch = useDispatch();
-    const currentUser=useSelector(store=>store.userReducer.currentUser);
-
+    const userStore = useSelector(store=>store.userStore);
+    const chatStore = useSelector(store=>store.chatStore);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    useEffect(()=>{
+        dispatch(getUsersChat());
+
+    },[]);
+
+    useEffect(()=>{
+        dispatch(getUsersChat());
+    },[chatStore.createdChat, chatStore.CreateGroup]);
+
 
     // Function to handle opening the dropdown menu
     const handleClick = (event) => {
@@ -234,7 +245,7 @@ function HomePage() {
                         </div>
                         {/* Chat Cards */}
                         <div className="w-full h-[83vh] ml-3 mt-2 overflow-y-scroll pb-5">
-                            {chats.map((item) => (
+                            {chatStore.chats.map((item) => (
                                 <div
                                     key={item.id}
                                     onClick={() => handleCurrentChatClick(item)}

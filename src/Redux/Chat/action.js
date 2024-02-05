@@ -5,17 +5,12 @@ import { CREATE_CHAT, CREATE_GROUP, GET_USERS_CHAT } from "./actionType";
 export const createChat = (participantId) => async(dispatch) => {
     try {
         const response = await axios.post(
-            `${BASE_API_URL}/chat/single?participantId=${participantId}`,
-            {},
-            {
-                withCredentials: true,
-            }
-        );
+            `${BASE_API_URL}/chat/single?participantId=${participantId}`, {}, {  withCredentials: true}); 
 
         const resData = response.data;
         console.log(resData);
         dispatch({ type: CREATE_CHAT, payload: resData });
-        
+
     } catch (error) {
         // Handle error here
         console.error(error);

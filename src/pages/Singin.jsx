@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const Singin = () => {
 
-    const {isAuthenticated}=useSelector(state=>state.userReducer);
+    const {isAuthenticated}=useSelector(state=>state.userStore);
     const navigate=useNavigate();
     const dispatch = useDispatch();
 

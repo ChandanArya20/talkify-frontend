@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { IoIosSearch, IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
-import SelectedGroupMember from "./SelectedGroupMember";
-import chatUserData from "../assets/chatUserData";
 import ChatUserCard from "./ChatUserCard";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchUser } from "../Redux/Auth/action";
@@ -11,15 +9,13 @@ const AddNewUser = ({ closeAddNewUserSection }) => {
     
     const [query, setQuery] = useState("");
     const [isSearchClicked, setIsSearchClicked]=useState(false);
-    const userStore=useSelector(state=>state.userReducer);
+    const userStore=useSelector(state=>state.userStore);
     const dispatch=useDispatch();
-
 
     // Function to handle search
     const handleSearch = (query) => {
         dispatch(SearchUser(query));
     };
-
 
     const handleCreateChat=(participantId)=>{
         dispatch(createChat(participantId));
