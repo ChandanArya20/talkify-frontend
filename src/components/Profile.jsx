@@ -5,21 +5,50 @@ import { IoCheckmarkOutline } from "react-icons/io5";
 import { FaRegFaceSmile } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import loginuser from "../assets/loginuser.jpg";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../Redux/Auth/action";
+import { ClipLoader } from "react-spinners";
 
 const Profile = ({ closeOpenProfile }) => {
     
+    const {currentUser} = useSelector(state=>state.userStore);
     const [isPenClicked, setIsPenClicked] = useState(false);
     const [isAboutPenClicked, setIsAboutPenClicked] = useState(false);
-    const [userName, setUserName] = useState("Missing");
-    const [about, setAbout] = useState("If you are bad then I am your dad");
-    const navigate = useNavigate();
+    const [profileImage, setProfileImage]=useState(currentUser?.profileImage);
+    const [loading, setLoading]=useState(false);
+    const [name, setName]=useState(currentUser?.name);
+    const [about, setAbout]=useState(currentUser?.about);
+    const dispatch = useDispatch();
 
-    const handleRenameUserName = () => {
+    const handleUpdateName = () => {
         setIsPenClicked(false);
+        console.log(name);
+        dispatch(updateUser({id:currentUser.id, name:name}));
     };
-    const handleRenameAbout = () => {
+    const handleUpdateAbout = () => {
         setIsAboutPenClicked(false);
+        console.log(about);
+        dispatch(updateUser({id:currentUser.id, about:about}));
     };
+
+    const handleProfileImageChange=async(imageFile)=>{
+       
+        const data=new FormData();
+        data.append("file",imageFile);
+        data.append("upload_preset","talkify-images");
+        data.append("cloud_name","ddj5asxve");
+
+        setLoading(true);
+        const response=await axios.post("https://api.cloudinary.com/v1_1/ddj5asxve/image/upload",data)
+        const imageURL=response.data.url;
+        setProfileImage(imageURL);
+        console.log(imageURL);
+        setLoading(false);
+        
+        dispatch(updateUser({id:currentUser.id, profileImage:imageURL}));
+        
+    }
 
     return (
         <div>
@@ -36,12 +65,13 @@ const Profile = ({ closeOpenProfile }) => {
             {/* main section  */}
             <div className="mt-28 overflow-y-scroll space-y-8 h-[80vh]">
                 {/* image section */}
-                <div className="h-60 flex items-center justify-center">
+                <div className="h-60 flex items-center justify-center relative">
+                    {loading && <ClipLoader color="#2d0442" className="absolute"/>}
                     <div className="w-44 h-44 md:w-48 md:h-48 rounded-full bg-white cursor-pointer">
                         <label htmlFor="imageInput">
                             <img
                                 className=" w-full h-full rounded-full object-cover cursor-pointer"
-                                src={loginuser}
+                                src={profileImage || loginuser}
                                 alt=""
                             />
                         </label>
@@ -50,6 +80,7 @@ const Profile = ({ closeOpenProfile }) => {
                             id="imageInput"
                             accept="image/*"
                             className=" w-full h-full rounded-full object-cover hidden"
+                            onChange={e=>handleProfileImageChange(e.target.files[0])}
                         />
                     </div>
                 </div>
@@ -63,7 +94,7 @@ const Profile = ({ closeOpenProfile }) => {
                     </div>
                     {!isPenClicked ? (
                         <div className="flex justify-between items-center">
-                            <p className="py-3 text-gray-300">{userName}</p>
+                            <p className="py-3 text-gray-300">{currentUser.name}</p>
                             <FaPen
                                 className="cursor-pointer text-gray-400"
                                 onClick={() => setIsPenClicked(true)}
@@ -73,17 +104,17 @@ const Profile = ({ closeOpenProfile }) => {
                         <div className="flex py-2 items-center border-b-2 border-gray-400">
                             <input
                                 type="text"
-                                value={userName}
+                                value={name}
                                 className="flex-1 bg-transparent outline-none text-gray-300"
                                 onChange={(e) => {
-                                    setUserName(e.target.value);
+                                    setName(e.target.value);
                                 }}
                             />
                             <div className="flex space-x-2">
                                 <FaRegFaceSmile className="text-gray-400 cursor-pointer text-xl" />
                                 <IoCheckmarkOutline
                                     className="text-gray-400 cursor-pointer text-2xl"
-                                    onClick={handleRenameUserName}
+                                    onClick={handleUpdateName}
                                 />
                             </div>
                         </div>
@@ -105,7 +136,7 @@ const Profile = ({ closeOpenProfile }) => {
                     </div>
                     {!isAboutPenClicked ? (
                         <div className="flex justify-between items-center">
-                            <p className="py-3 text-gray-300">{about}</p>
+                            <p className="py-3 text-gray-300">{about || "Hi I am using Talkify!"}</p>
                             <FaPen
                                 className="cursor-pointer text-gray-400"
                                 onClick={() => setIsAboutPenClicked(true)}
@@ -125,7 +156,7 @@ const Profile = ({ closeOpenProfile }) => {
                                 <FaRegFaceSmile className="text-gray-400 cursor-pointer text-xl" />
                                 <IoCheckmarkOutline
                                     className="text-gray-400 cursor-pointer text-2xl"
-                                    onClick={handleRenameAbout}
+                                    onClick={handleUpdateAbout}
                                 />
                             </div>
                         </div>

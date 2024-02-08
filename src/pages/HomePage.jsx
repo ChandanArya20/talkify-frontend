@@ -21,6 +21,7 @@ import HomePageImage from "../assets/login-image.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/Auth/action";
 import { getUsersChat } from "../Redux/Chat/action";
+import axios from "axios";
 
 function HomePage() {
 
@@ -32,14 +33,13 @@ function HomePage() {
     },[isAuthenticated])
     
     const [query, setQuery] = useState("");
-    const [chats, setChats] = useState(chatsData);
     const [isFilterClicked, setIsFilterClicked] = useState(false);
-    const [currentChat, setCurrentChat] = useState(false);
-    const [selectedChat, setSelectedChat] = useState(null);
+    const [currentChat, setCurrentChat] =useState(false);
+    const [selectedChat, setSelectedChat]= useState(null);
     const [isProfile, setIsProfile] = useState(false);
     const [isStatus, setIsStatus] = useState(false);
     const [isGroup, setIsGroup] = useState(false);
-    const [isAddNewUser, setIsAddNewUser] = useState(false);
+    const [isAddNewUser, setIsAddNewUser]= useState(false);
     const [isSearchClicked, setIsSearchClicked]=useState(false);
     const dispatch = useDispatch();
     const userStore = useSelector(store=>store.userStore);
@@ -47,14 +47,24 @@ function HomePage() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
-    useEffect(()=>{
-        dispatch(getUsersChat());
+    useEffect(() => {
 
-    },[]);
-
-    useEffect(()=>{
-        dispatch(getUsersChat());
-    },[chatStore.createdChat, chatStore.CreateGroup]);
+        const fetchData = async () => {
+            try {
+                await dispatch(getUsersChat());
+            } catch (error) {
+                console.log(error);
+                if (axios.isAxiosError(error)) {
+                    if (error?.response.status === 400) {
+                        dispatch(logout());
+                    }
+                }
+            }
+        };
+    
+        fetchData(); // Call the function immediately
+    
+    }, [chatStore.createdChat, chatStore.CreateGroup]);
 
 
     // Function to handle opening the dropdown menu
@@ -82,12 +92,14 @@ function HomePage() {
 
     // Function to handle clicking on the current chat
     const handleCurrentChatClick = (chat) => {
-
+       
+        if(selectedChat?.id==chat.id){
+            return;
+        }
         setSelectedChat(chat);
-    
         // Navigate to chat details on small devices, otherwise set the current chat
         if (window.innerWidth < 640) {
-            navigate("/chat-details",{state:chat.userName});
+            navigate("/chat-details",{state:chat});
         } else {
             setCurrentChat(true);
         }
@@ -148,7 +160,7 @@ function HomePage() {
                                 >
                                     <img
                                         className=" w-full h-full rounded-full object-cover"
-                                        src={loginuser}
+                                        src={userStore.currentUser?.profileImage}
                                         alt=""
                                     />
                                 </div>
@@ -250,7 +262,7 @@ function HomePage() {
                                     key={item.id}
                                     onClick={() => handleCurrentChatClick(item)}
                                 >
-                                    <ChatCard {...item} />
+                                    <ChatCard {...item} selectedChatId={selectedChat?.id}/>
                                 </div>
                             ))}
                         </div>
@@ -261,7 +273,7 @@ function HomePage() {
             {/* Right Section */}
             <div className="hidden md:flex md:w-[60%] border-l-2 border-gray-700">
                 {currentChat ? (
-                    <ChatDetails userName={selectedChat?.userName} />
+                    <ChatDetails chatData={selectedChat} />
                 ) : (
                     <div className="w-full h-screen flex flex-col items-center justify-center">
                         {/* Image */}

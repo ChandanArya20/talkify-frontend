@@ -31,7 +31,6 @@ const Singin = () => {
         e.preventDefault();
         try {
             await dispatch(login(userData));
-            console.log("logging...");
         } catch (error) {
             if(axios.isAxiosError(error)){
                 if(error.response?.status===404){

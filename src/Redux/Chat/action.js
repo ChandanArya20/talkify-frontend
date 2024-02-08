@@ -20,11 +20,16 @@ export const createChat = (participantId) => async(dispatch) => {
 
 export const createGroupChat = (chatData) => async(dispatch) => {
    
-    const response = await axios.post(`${BASE_API_URL}/chat/create-group`,chatData,{ withCredentials: true });
-    const resData = response.data;
+    try {
+        const response = await axios.post(`${BASE_API_URL}/chat/create-group`,chatData,{ withCredentials: true });
+        const resData = response.data;
     
-    console.log(resData);
-    dispatch({ type: CREATE_GROUP, payload: resData });
+        console.log(resData);
+        dispatch({ type: CREATE_GROUP, payload: resData });
+    } catch (error) {
+        console.log(error);
+    }
+    
 };
 
 export const getUsersChat = () => async(dispatch) => {
@@ -33,7 +38,7 @@ export const getUsersChat = () => async(dispatch) => {
     const resData = response.data;
     
     console.log(resData);
-    dispatch({ type: GET_USERS_CHAT, payload: resData });
+    dispatch({ type: GET_USERS_CHAT, payload: resData }); 
 };
 
 

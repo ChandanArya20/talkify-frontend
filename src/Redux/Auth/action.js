@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_API_URL } from "../../config/api";
-import { LOGIN, LOGOUT, REGISTER, REQ_USER, SEARCH_USER } from "./actionType";
+import { LOGIN, LOGOUT, REGISTER, REQ_USER, SEARCH_USER, UPDATE_USER } from "./actionType";
 
 export const register = (userData) => async (dispatch) => {
    
@@ -63,6 +63,20 @@ export const SearchUser = (query) => async (dispatch) => {
         const resData = response.data;
         console.log("search user ", resData);
         dispatch({ type: SEARCH_USER, payload: resData });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const updateUser = (userData) => async (dispatch) => {
+    try {
+        const response = await axios.post(`${BASE_API_URL}/user/update`, userData, 
+        { withCredentials: true });
+
+        const resData = response.data;
+        console.log("updated user ", resData);
+        localStorage.setItem("user", JSON.stringify(resData));
+        dispatch({ type: UPDATE_USER, payload: resData });
     } catch (error) {
         console.log(error);
     }

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, REQ_USER, REGISTER, SEARCH_USER} from "./actionType";
+import { LOGIN, LOGOUT, REQ_USER, REGISTER, SEARCH_USER, UPDATE_USER} from "./actionType";
 
 const user=JSON.parse(localStorage.getItem("user"));
 const isLoggedin=localStorage.getItem("isLoggedin") === "true";
@@ -26,6 +26,9 @@ export const userReducer = (state = initialState, { type, payload }) => {
 
         case LOGOUT:
             return { ...state, userData:null, isAuthenticated: false };
+
+        case UPDATE_USER:
+            return { ...state, currentUser:payload };
 
         default:
             return state;
